@@ -29,14 +29,14 @@ const FeaturedCollection: React.FC<{ title: string; image: string; link: string;
 );
 
 const LOGO_DATA = [
-  { name: 'National Geographic', domain: 'nationalgeographic.com' },
-  { name: 'Canon', domain: 'global.canon' },
-  { name: 'Smithsonian Magazine', domain: 'smithsonianmag.com' },
-  { name: 'Tampa International Airport', domain: 'tampaairport.com' },
-  { name: 'World Wildlife Magazine', domain: 'worldwildlife.org' },
-  { name: 'Fernbank Museum', domain: 'fernbankmuseum.org' },
-  { name: 'Duke University', domain: 'duke.edu' },
-  { name: 'Florida Southern College', domain: 'flsouthern.edu' },
+  { name: 'National Geographic', path: '/logos/national-geographic.svg' },
+  { name: 'Canon', path: '/logos/canon.svg' },
+  { name: 'Smithsonian Magazine', path: '/logos/smithsonian.svg' },
+  { name: 'Tampa International Airport', path: '/logos/tampa-airport.svg' },
+  { name: 'World Wildlife Fund', path: '/logos/wwf.svg' },
+  { name: 'Fernbank Museum', path: '/logos/fernbank.svg' },
+  { name: 'Duke University', path: '/logos/duke.svg' },
+  { name: 'Florida Southern College', path: '/logos/florida-southern.svg' },
 ];
 
 export const Home: React.FC = () => {
@@ -53,20 +53,11 @@ export const Home: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 items-center justify-items-center">
               {LOGO_DATA.map((logo) => (
                 <div key={logo.name} className="w-32 h-16 flex items-center justify-center grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 group">
-                  <img 
-                    src={`https://logo.clearbit.com/${logo.domain}?size=400&format=png`} 
-                    alt={logo.name} 
+                  <img
+                    src={logo.path}
+                    alt={logo.name}
                     className="max-h-12 max-w-full object-contain mix-blend-multiply group-hover:mix-blend-normal"
-                    onError={(e) => {
-                      // Fallback text if logo fails
-                      const img = e.currentTarget;
-                      const parent = img.parentElement;
-                      img.style.display = 'none';
-                      if (parent) {
-                        parent.innerText = logo.name;
-                        parent.className = "text-[10px] font-bold text-gray-400 uppercase text-center leading-tight flex items-center justify-center w-full h-full";
-                      }
-                    }}
+                    loading="lazy"
                   />
                 </div>
               ))}
