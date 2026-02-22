@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 
 const HERO_IMAGES = [
-  'https://picsum.photos/id/29/2400/1600', // Mountains
-  'https://picsum.photos/id/10/2400/1600', // Forest
-  'https://picsum.photos/id/16/2400/1600', // Coast/Water
-  'https://picsum.photos/id/15/2400/1600', // Waterfall
+  '/EXHIBITION_--_Morean.jpg',
+  '/EXHIBITION_--_TPA_(Tampa_Intl_Airport).jpg',
+  '/EXHIBITION_--_KWU.png',
+  '/EXHIBITION_--_Power_Plant_Gallery_(Duke_MFA).jpg',
 ];
 
 export const Hero: React.FC = () => {
