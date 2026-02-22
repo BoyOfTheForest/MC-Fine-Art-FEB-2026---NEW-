@@ -3,9 +3,9 @@ import { Button } from './Button';
 
 const HERO_IMAGES = [
   '/EXHIBITION_--_Morean.jpg',
-  '/EXHIBITION_--_TPA_(Tampa_Intl_Airport).jpg',
+  '/EXHIBITION_--_TPA_%28Tampa_Intl_Airport%29.jpg',
   '/EXHIBITION_--_KWU.png',
-  '/EXHIBITION_--_Power_Plant_Gallery_(Duke_MFA).jpg',
+  '/EXHIBITION_--_Power_Plant_Gallery_%28Duke_MFA%29.jpg',
 ];
 
 export const Hero: React.FC = () => {
