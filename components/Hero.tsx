@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 
 const HERO_IMAGES = [
-  '/EXHIBITION_--_Morean.jpg',
-  '/EXHIBITION_--_TPA_%28Tampa_Intl_Airport%29.jpg',
-  '/EXHIBITION_--_KWU.png',
-  '/EXHIBITION_--_Power_Plant_Gallery_%28Duke_MFA%29.jpg',
+  '/EXHIBITIONS/Group/EXHIBITION_--_Morean.jpg',
+  '/EXHIBITIONS/Solo/EXHIBITION_--_TPA_(Tampa_Intl_Airport).jpg',
+  '/EXHIBITIONS/Solo/EXHIBITION_--_KWU.png',
+  '/EXHIBITIONS/Group/EXHIBITION_--_Power_Plant_Gallery_(Duke_MFA).jpg',
+  '/EXHIBITIONS/Solo/EXHIBITION_--_Fernbank_Museum.JPG',
 ];
 
 export const Hero: React.FC = () => {
@@ -24,25 +25,25 @@ export const Hero: React.FC = () => {
       {/* Slideshow Background */}
       {HERO_IMAGES.map((img, index) => {
         const prevIndex = (currentIndex - 1 + HERO_IMAGES.length) % HERO_IMAGES.length;
-        let className = 'translate-x-full opacity-0 transition-none z-0'; 
+        let className = 'translate-x-full opacity-0 transition-none z-0';
 
         if (index === currentIndex) {
           className = 'translate-x-0 opacity-100 z-10 transition-transform duration-1000 ease-in-out';
         } else if (index === prevIndex) {
           className = '-translate-x-full opacity-100 z-10 transition-transform duration-1000 ease-in-out';
         }
-        
+
         return (
-          <div 
+          <div
             key={index}
             className={`absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full ${className}`}
-            style={{ backgroundImage: `url(${img})` }}
+            style={{ backgroundImage: `url('${encodeURI(img)}')` }}
           />
         );
       })}
 
       {/* Darker overlay for better text contrast (bg-black/60) */}
-      <div className="absolute inset-0 bg-black/60 z-20"></div> 
+      <div className="absolute inset-0 bg-black/60 z-20"></div>
 
       {/* Content */}
       <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-start z-30">
@@ -69,7 +70,7 @@ export const Hero: React.FC = () => {
       {/* Slider Indicators */}
       <div className="absolute bottom-10 left-0 w-full z-40 flex justify-center space-x-3">
         {HERO_IMAGES.map((_, index) => (
-          <button 
+          <button
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/70'}`}

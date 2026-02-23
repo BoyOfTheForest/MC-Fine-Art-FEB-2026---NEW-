@@ -1,52 +1,87 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/Button';
-import { NAVIGATION_DATA } from '../types';
-
-// Extract collections from the nav data
-const collections = NAVIGATION_DATA.find(item => item.label === 'Collections')?.children || [];
-
-// Map dummy images to collections
-const collectionImages: Record<string, string> = {
-  'Earth Up Close': 'https://picsum.photos/id/16/1200/1200',
-  'Symphonies in Scale': 'https://picsum.photos/id/250/1200/1200',
-  'Ghosts': 'https://picsum.photos/id/28/1200/1200',
-  'Digital Dialogs': 'https://picsum.photos/id/111/1200/1200',
-};
 
 export const CollectionsLandingPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
-      {/* 1. Minimal Page Header */}
-      <section className="pt-32 pb-16 px-6 max-w-7xl mx-auto text-center md:text-left">
-        <h1 className="text-5xl font-light mb-4 text-black">Collections</h1>
-        <p className="text-xl text-gray-500 font-light max-w-2xl">
-          Curated bodies of work exploring texture, scale, and the unseen worlds around us.
-        </p>
-      </section>
+      {/* 1. Full Bleed Hero */}
+      <div className="w-full h-[60vh] relative overflow-hidden bg-gray-900">
+        <img
+          src="https://cicanese.my.canva.site/art/_assets/media/084e8cdec801c84371f6ba94d5df4000.jpg"
+          alt="Earth Up Close Hero"
+          className="w-full h-full object-cover"
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 bg-gradient-to-t from-black/80 to-transparent">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-light text-white capitalize shadow-sm">
+              Collections
+            </h1>
+            <p className="text-xl text-gray-200 font-light max-w-2xl mt-4">
+              Curated bodies of work exploring texture, scale, and the unseen worlds around us.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* 2. Image-First Collection Grid */}
-      <section className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-          {collections.map((col, idx) => (
-            <Link key={idx} to={col.path || '#'} className="group block">
-              <div className="aspect-[4/5] overflow-hidden bg-gray-100 mb-6 rounded-3xl">
-                <img 
-                  src={collectionImages[col.label] || `https://picsum.photos/seed/${idx}/800/1000`} 
-                  alt={col.label} 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-              </div>
-              <div className="flex flex-col items-start">
-                <h2 className="text-2xl font-light text-black mb-2 group-hover:text-gray-600 transition-colors">
-                  {col.label}
-                </h2>
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400">
-                  View Collection
-                </span>
-              </div>
-            </Link>
-          ))}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Earth Up Close */}
+          <Link to="/collections/earth-up-close" className="flex flex-col space-y-4 group cursor-pointer block">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100">
+              <img src="https://cicanese.my.canva.site/art/_assets/media/084e8cdec801c84371f6ba94d5df4000.jpg" alt="Earth Up Close" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 hover:shadow-xl" />
+            </div>
+            <h3 className="text-xl font-medium text-black group-hover:text-gray-600 transition-colors">Earth Up Close</h3>
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400">View Collection</p>
+          </Link>
+
+          {/* Ghosts */}
+          <Link to="/collections/ghosts" className="flex flex-col space-y-4 group cursor-pointer block">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100">
+              <img src="https://cicanese.my.canva.site/art/_assets/media/aad892e5eba653ffd6386c355ea82d63.jpg" alt="Ghosts" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 hover:shadow-xl" />
+            </div>
+            <h3 className="text-xl font-medium text-black group-hover:text-gray-600 transition-colors">Ghosts</h3>
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400">View Collection</p>
+          </Link>
+
+          {/* Dilmah Conservation */}
+          <Link to="#" className="flex flex-col space-y-4 group cursor-pointer block">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100">
+              <img src="https://cicanese.my.canva.site/art/_assets/media/a5970cb72dcdd52a108f0e1e413b9087.jpg" alt="Dilmah Conservation" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 hover:shadow-xl" />
+            </div>
+            <h3 className="text-xl font-medium text-black group-hover:text-gray-600 transition-colors">Dilmah Conservation</h3>
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400">View Collection</p>
+          </Link>
+
+          {/* The Digital Dialogs */}
+          <Link to="/collections/digital-dialogs" className="flex flex-col space-y-4 group cursor-pointer block">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100">
+              <img src="https://cicanese.my.canva.site/art/_assets/media/9c5d799ec66e2bebb58b211494dfb632.jpg" alt="The Digital Dialogs" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 hover:shadow-xl" />
+            </div>
+            <h3 className="text-xl font-medium text-black group-hover:text-gray-600 transition-colors">The Digital Dialogs</h3>
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400">View Collection</p>
+          </Link>
+
+          {/* Momento Mori */}
+          <Link to="#" className="flex flex-col space-y-4 group cursor-pointer block">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100">
+              <img src="https://cicanese.my.canva.site/art/_assets/media/5b197909a005c10a51b538d2a7a70009.jpg" alt="Momento Mori" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 hover:shadow-xl" />
+            </div>
+            <h3 className="text-xl font-medium text-black group-hover:text-gray-600 transition-colors">Momento Mori</h3>
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400">View Collection</p>
+          </Link>
+
+          {/* TBA 6th Slot */}
+          <div className="flex flex-col space-y-4 group block">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" alt="Upcoming Collection" className="w-full h-full object-cover opacity-70" />
+            </div>
+            <h3 className="text-xl font-medium text-gray-400">To Be Announced</h3>
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Coming Soon</p>
+          </div>
         </div>
       </section>
 
@@ -54,7 +89,7 @@ export const CollectionsLandingPage: React.FC = () => {
       <section className="py-24 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-1/2 rounded-3xl overflow-hidden">
-             <img src="https://picsum.photos/id/104/1600/900" alt="Featured Work" className="w-full opacity-90" />
+            <img src="https://picsum.photos/id/104/1600/900" alt="Featured Work" className="w-full opacity-90" />
           </div>
           <div className="w-full md:w-1/2 space-y-6">
             <span className="text-xs font-bold tracking-widest uppercase text-gray-400">Limited Edition Release</span>
