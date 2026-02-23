@@ -91,7 +91,7 @@ export const Home: React.FC = () => {
         {/* Updated link to point to the new Product Page template for demonstration */}
         <FeaturedCollection
           title="Skyward Sentinel (New Release)"
-          image="https://images.unsplash.com/photo-1611003228941-98852ba62227?q=80&w=1600&auto=format&fit=crop"
+          image="/Images/Artwork/Skyward/Skyward-Sentinel-Original.jpg"
           link="/artwork/skyward-sentinel"
           align="right"
         />
