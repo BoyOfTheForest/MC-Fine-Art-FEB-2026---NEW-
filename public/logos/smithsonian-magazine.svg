@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet">
+  <rect width="300" height="150" fill="none"/>
+  <text x="150" y="80" font-family="'Times New Roman', Times, serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#000">Smithsonian</text>
+  <text x="150" y="110" font-family="'Times New Roman', Times, serif" font-size="14" font-weight="normal" text-anchor="middle" letter-spacing="2" fill="#000">MAGAZINE</text>
+</svg>
