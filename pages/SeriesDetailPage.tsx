@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SERIES_CONTENT_DATA, NavItem } from '../types';
+import { getArtworksBySeries } from '../data';
 
 // Recursively flatten the series data to get a linear list for navigation & breadcrumbs
 const flattenSeries = (items: NavItem[], parentPath: NavItem[] = []): { item: NavItem, breadcrumbs: NavItem[] }[] => {
@@ -58,22 +59,16 @@ export const SeriesDetailPage: React.FC = () => {
     };
   }, [location.pathname]);
 
-  // Mock "Cinematic" Images
-  const images = Array.from({ length: 6 }).map((_, i) => ({
-    url: `https://picsum.photos/seed/${currentSeries.label}${i}/1600/900`,
-    caption: `Plate No. ${i + 1} — ${currentSeries.label}, 2023`
-  }));
+  const artworks = getArtworksBySeries(location.pathname);
 
   return (
     <div className="bg-white">
-      {/* 1. Header & Breadcrumb */}
       <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto">
         <div className="mb-8">
             <Link to="/series" className="inline-flex items-center text-xs uppercase tracking-widest text-gray-400 hover:text-black transition-colors mb-4">
             <ArrowLeft size={12} className="mr-2" /> All Series
             </Link>
-            
-            {/* Breadcrumbs */}
+
             {breadcrumbs.length > 0 && (
                 <div className="flex flex-wrap items-center text-xs font-bold uppercase tracking-widest text-gray-400 space-x-2">
                     {breadcrumbs.slice(0, -1).map((crumb, idx) => (
@@ -90,31 +85,32 @@ export const SeriesDetailPage: React.FC = () => {
         <h1 className="text-5xl md:text-6xl font-light capitalize text-black mb-8">{currentSeries.label}</h1>
       </div>
 
-      {/* 2. Story Block */}
       <div className="max-w-3xl mx-auto px-6 mb-24">
         <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-800 border-l-2 border-gray-900 pl-6 font-serif">
-          "This series documents the subtle shift in light that occurs in {currentSeries.label}. 
-          Moving beyond the postcard view, I aimed to capture the quiet isolation of the landscape."
+          "I didn't come to {currentSeries.label} looking for postcards. I came looking for the quiet: the kind
+          that forces a restless mind to stop scrolling and start breathing. These pieces bring that raw, unfiltered
+          stillness directly into your daily orbit."
         </p>
       </div>
 
-      {/* 3. Cinematic Scroll Layout */}
       <div className="max-w-7xl mx-auto px-0 md:px-6 pb-32 space-y-24">
-        {images.map((img, idx) => (
-          <Link 
-            key={idx} 
-            to="/artwork/skyward-sentinel"
+        {artworks.map((artwork, idx) => (
+          <Link
+            key={artwork.slug}
+            to={`/artwork/${artwork.slug}`}
             className="flex flex-col items-center animate-[fadeIn_0.5s_ease-out] group cursor-pointer"
           >
             <div className={`w-full overflow-hidden shadow-sm ${idx % 2 !== 0 ? 'md:w-3/4 rounded-3xl' : 'md:w-full md:rounded-3xl'}`}>
-              <img 
-                src={img.url} 
-                alt={img.caption} 
+              <img
+                src={artwork.heroImage}
+                alt={artwork.heroAlt}
                 className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
               />
             </div>
             <div className="mt-4 text-center">
-              <p className="text-xs font-serif italic text-gray-500 group-hover:text-black transition-colors">{img.caption}</p>
+              <p className="text-xs font-serif italic text-gray-500 group-hover:text-black transition-colors">
+                {artwork.title}, {artwork.year}
+              </p>
             </div>
           </Link>
         ))}
@@ -141,7 +137,7 @@ export const SeriesDetailPage: React.FC = () => {
             </div>
 
             <div className="text-center">
-              <h2 className="text-3xl font-light mb-8">Continue the Journey</h2>
+              <h2 className="text-3xl font-light mb-8">Keep flipping rocks.</h2>
               <div className="flex flex-wrap justify-center gap-6">
                 <Button to="/series">View More Series</Button>
                 <Button to="/collections/earth-up-close" variant="outline">Explore Collections</Button>

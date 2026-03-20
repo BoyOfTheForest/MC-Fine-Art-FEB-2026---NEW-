@@ -206,7 +206,7 @@ export const AboutPage: React.FC = () => {
           </div>
           <div className="flex flex-col space-y-4">
             <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-white">
-              <img src="/EXHIBITIONS/Group/EXHIBITION -- St. Louis University Art Museum (Oak Treehopper - Matthew Cicanese).jpg" alt="St. Louis University Art Museum" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+              <img src="/EXHIBITIONS/Group/EXHIBITION--St-Louis-University-Art-Museum.jpg" alt="St. Louis University Art Museum" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
             </div>
             <h3 className="text-xl font-medium">St. Louis University Art Museum</h3>
             <p className="text-xs font-bold uppercase tracking-widest text-gray-400">St. Louis, Missouri</p>

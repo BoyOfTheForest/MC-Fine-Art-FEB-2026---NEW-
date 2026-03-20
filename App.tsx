@@ -12,6 +12,8 @@ import { CollectionsLandingPage } from './pages/CollectionsLandingPage';
 import { CollectionDetailPage } from './pages/CollectionDetailPage';
 import { SeriesLandingPage } from './pages/SeriesLandingPage';
 import { SeriesDetailPage } from './pages/SeriesDetailPage';
+import { SubjectsLandingPage } from './pages/SubjectsLandingPage';
+import { SubjectDetailPage } from './pages/SubjectDetailPage';
 import { QuizLandingPage } from './pages/QuizLandingPage';
 import { GenericPage } from './pages/GenericPage';
 import { ArtworkDetailPage } from './pages/ArtworkDetailPage';
@@ -47,8 +49,11 @@ function App() {
 
             {/* Series Routes */}
             <Route path="/series" element={<SeriesLandingPage />} />
-            {/* Catch-all for series nested details to the detail page */}
             <Route path="/series/*" element={<SeriesDetailPage />} />
+
+            {/* Subject Routes */}
+            <Route path="/subjects" element={<SubjectsLandingPage />} />
+            <Route path="/subjects/:id" element={<SubjectDetailPage />} />
 
             {/* Artwork Detail Route */}
             <Route path="/artwork/:id" element={<ArtworkDetailPage />} />
