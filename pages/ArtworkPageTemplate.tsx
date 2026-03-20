@@ -1,11 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button } from '../components/Button';
-import { Sun, MapPin, Eye, Shield, Truck, Stamp, Layers, PenTool, Ruler, CreditCard } from 'lucide-react';
+import { Sun, MapPin, Eye, Shield, Truck, Stamp, Layers, PenTool, Ruler, CreditCard, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const ArtworkPageTemplate: React.FC = () => {
     const { id } = useParams();
     const [showStickyButton, setShowStickyButton] = useState(false);
+
+    // Lightbox State
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+    // Details Grid Images (crops)
+    const detailImages = [
+        "/Images/Artwork/Skyward/Skyward-Sentinel-Detail-Crop.jpg",
+        "/Images/Artwork/Skyward/Skyward-Sentinel-Detail-Crop.jpg",
+        "/Images/Artwork/Skyward/Skyward-Sentinel-Detail-Crop.jpg",
+        "/Images/Artwork/Skyward/Skyward-Sentinel-Detail-Crop.jpg"
+    ];
+
+    // Mockups Carousel State
+    const mockups = [
+        "/Images/Artwork/Skyward/Skyward-Sentinel-couch.jpg",
+        "/Images/Artwork/Skyward/Skyward-Sentinel- Bench.jpg",
+        "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop"
+    ];
+    const [activeMockupIndex, setActiveMockupIndex] = useState(0);
+
+    const nextMockup = () => {
+        setActiveMockupIndex((prev) => (prev + 1) % mockups.length);
+    };
+    const prevMockup = () => {
+        setActiveMockupIndex((prev) => (prev - 1 + mockups.length) % mockups.length);
+    };
+
+    const openLightbox = (imgSrc: string) => {
+        setLightboxImage(imgSrc);
+        setLightboxOpen(true);
+    };
+
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+        setLightboxImage(null);
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
