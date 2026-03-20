@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SUBJECTS_CONTENT_DATA } from '../types';
+import { getArtworksBySubject } from '../data';
 
 const SUBJECT_HERO_IMAGES: Record<string, string> = {
   'abstracts': 'https://images.pexels.com/photos/2832382/pexels-photo-2832382.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -23,20 +24,17 @@ export const SubjectDetailPage: React.FC = () => {
 
   const displayTitle = subject?.title || (id ? id.replace(/-/g, ' ') : 'Subject');
 
+  const artworks = id ? getArtworksBySubject(id) : [];
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
-
-  const images = Array.from({ length: 9 }).map((_, i) => ({
-    url: `https://picsum.photos/seed/${id}${i}/800/${i % 2 === 0 ? 1000 : 600}`,
-    aspect: i % 2 === 0 ? 'aspect-[4/5]' : 'aspect-[4/3]'
-  }));
 
   return (
     <div className="bg-white">
       <div className="w-full h-[60vh] relative overflow-hidden bg-gray-900">
         <img
-          src={id ? (SUBJECT_HERO_IMAGES[id] || `https://picsum.photos/seed/${id}hero/2400/1600`) : ''}
+          src={id ? (SUBJECT_HERO_IMAGES[id] || `https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1600`) : ''}
           alt={displayTitle}
           className="w-full h-full object-cover"
         />
@@ -75,22 +73,22 @@ export const SubjectDetailPage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 pb-32">
         <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-          {images.map((img, idx) => (
+          {artworks.map((artwork) => (
             <Link
-              key={idx}
-              to="/artwork/skyward-sentinel"
+              key={artwork.slug}
+              to={`/artwork/${artwork.slug}`}
               className="break-inside-avoid group cursor-pointer block"
             >
               <div className="relative overflow-hidden mb-3 rounded-2xl">
                 <img
-                  src={img.url}
-                  alt={`Artwork ${idx}`}
+                  src={artwork.heroImage}
+                  alt={artwork.heroAlt}
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
               </div>
               <div className="flex justify-start items-baseline opacity-70 group-hover:opacity-100 transition-opacity">
-                <h3 className="text-sm font-medium uppercase tracking-wide">Untitled No. {idx + 1}</h3>
+                <h3 className="text-sm font-medium uppercase tracking-wide">{artwork.title}</h3>
               </div>
             </Link>
           ))}

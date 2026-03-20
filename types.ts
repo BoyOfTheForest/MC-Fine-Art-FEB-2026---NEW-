@@ -21,6 +21,44 @@ export interface ContentEntry {
   imageUrl?: string;
 }
 
+export interface ArtworkTechnicalFeature {
+  title: string;
+  description: string;
+}
+
+export interface Artwork {
+  slug: string;
+  title: string;
+  subtitle: string;
+  year: string;
+  origin: string;
+  editionSize: string;
+  medium: string;
+  collections: string[];
+  series: string;
+  subjects: string[];
+  heroImage: string;
+  heroAlt: string;
+  detailCropImage: string;
+  detailCropAlt: string;
+  placeImage: string;
+  placeImageAlt: string;
+  interiorImages: { src: string; alt: string }[];
+  narrativeMoment: string;
+  narrativePlace: string;
+  narrativeSubject: string;
+  storyOfSubjectLabel: string;
+  storyOfSubjectHeading: string;
+  storyOfSubjectP1: string;
+  storyOfSubjectP2: string;
+  storyOfPlaceLabel: string;
+  storyOfPlaceHeading: string;
+  storyOfPlaceP1: string;
+  storyOfPlaceP2: string;
+  interiorDescription: string;
+  technicalFeatures: ArtworkTechnicalFeature[];
+}
+
 // 1. CONTENT DATA (Used for rendering the Series Landing Page with all deep details)
 export const SERIES_CONTENT_DATA: NavItem[] = [
   {
@@ -31,6 +69,8 @@ export const SERIES_CONTENT_DATA: NavItem[] = [
         children: [
           { label: 'Appalachia', path: '/series/north-america/east/appalachia' },
           { label: 'Florida', path: '/series/north-america/east/florida' },
+          { label: 'Durham, NC', path: '/series/north-america/east/durham-nc' },
+          { label: 'Mid-Atlantic', path: '/series/north-america/east/mid-atlantic' },
         ]
       },
       {
