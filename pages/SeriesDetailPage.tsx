@@ -93,8 +93,9 @@ export const SeriesDetailPage: React.FC = () => {
       {/* 2. Story Block */}
       <div className="max-w-3xl mx-auto px-6 mb-24">
         <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-800 border-l-2 border-gray-900 pl-6 font-serif">
-          "This series documents the subtle shift in light that occurs in {currentSeries.label}. 
-          Moving beyond the postcard view, I aimed to capture the quiet isolation of the landscape."
+          "I didn't come to {currentSeries.label} looking for postcards. I came looking for the quiet&mdash;the kind
+          that forces a restless mind to stop scrolling and start breathing. These pieces bring that raw, unfiltered
+          stillness directly into your daily orbit."
         </p>
       </div>
 
@@ -141,7 +142,7 @@ export const SeriesDetailPage: React.FC = () => {
             </div>
 
             <div className="text-center">
-              <h2 className="text-3xl font-light mb-8">Continue the Journey</h2>
+              <h2 className="text-3xl font-light mb-8">Keep flipping rocks.</h2>
               <div className="flex flex-wrap justify-center gap-6">
                 <Button to="/series">View More Series</Button>
                 <Button to="/collections/earth-up-close" variant="outline">Explore Collections</Button>
