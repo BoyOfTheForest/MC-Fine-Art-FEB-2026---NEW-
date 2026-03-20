@@ -74,7 +74,7 @@ export const Home: React.FC = () => {
       <section className="py-24 px-6 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-light mb-8">A sanctuary for high-throttle brains.</h2>
         <p className="text-xl text-gray-500 font-light leading-relaxed">
-          I build portals to stillness through macro photography. These aren't decorations&mdash;they're
+          I build portals to stillness through macro photography. These aren't decorations. They're
           functional tools for mental restoration, designed for the fellow rock flipper who needs their
           walls to exhale. Browse the collections, dive into the geographic series, explore by subject,
           or take the quiz to find the work that speaks to your space.
@@ -90,7 +90,7 @@ export const Home: React.FC = () => {
         />
         <FeaturedCollection
           title="Skyward Sentinel (New Release)"
-          description="I spent an hour staring straight up at the canopy until the rest of the world disappeared. This piece brings that immersive, vertical pull into your space&mdash;a daily reminder to look up when the noise pulls you down."
+          description="I spent an hour staring straight up at the canopy until the rest of the world disappeared. This piece brings that immersive, vertical pull into your space, a daily reminder to look up when the noise pulls you down."
           image="/Images/Artwork/Skyward/Skyward-Sentinel-Original.jpg"
           link="/artwork/skyward-sentinel"
           align="right"

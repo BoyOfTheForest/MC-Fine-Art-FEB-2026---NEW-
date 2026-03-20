@@ -162,7 +162,7 @@ export const COLLECTIONS_CONTENT_DATA: ContentEntry[] = [
   {
     slug: 'ghosts',
     title: 'Ghosts',
-    description: 'We spend so much time moving fast that we miss the quiet echoes left behind in the landscapes around us. These pieces isolate the ephemeral\u2014the mist, the shadows, the fleeting encounters\u2014turning them into permanent anchors for a restless mind. They are for the collector who needs their walls to hold a profound, heavy stillness.',
+    description: 'We spend so much time moving fast that we miss the quiet echoes left behind in the landscapes around us. These pieces isolate the ephemeral: the mist, the shadows, the fleeting encounters, turning them into permanent anchors for a restless mind. They are for the collector who needs their walls to hold a profound, heavy stillness.',
     cta: 'What forgotten quiet are you waiting to remember? Step into the mist.',
     imageUrl: 'https://cicanese.my.canva.site/art/_assets/media/aad892e5eba653ffd6386c355ea82d63.jpg',
   },
@@ -194,13 +194,13 @@ export const SUBJECTS_CONTENT_DATA: ContentEntry[] = [
   {
     slug: 'abstracts',
     title: 'Abstracts',
-    description: 'When my ADHD brain is spinning, literal subjects often carry too much cognitive baggage. I capture these wild, natural geometries and unrecognizable textures because they offer an escape from logic\u2014a place where the mind doesn\'t have to solve a problem. They are pure, visual sanctuaries designed to let an overstimulated brain finally power down.',
+    description: 'When my ADHD brain is spinning, literal subjects often carry too much cognitive baggage. I capture these wild, natural geometries and unrecognizable textures because they offer an escape from logic: a place where the mind doesn\'t have to solve a problem. They are pure, visual sanctuaries designed to let an overstimulated brain finally power down.',
     cta: 'Stop solving. Start breathing. Explore the abstracts.',
   },
   {
     slug: 'landscapes',
     title: 'Landscapes',
-    description: 'A true landscape isn\'t a backdrop; it\'s an environment that physically alters your heart rate when you step inside it. I stitch these massive, panoramic worlds together so you can\'t simply glance at them and walk away\u2014they command the room. They are built for the collector who needs their home to feel as expansive and unbothered as the horizon.',
+    description: 'A true landscape isn\'t a backdrop; it\'s an environment that physically alters your heart rate when you step inside it. I stitch these massive, panoramic worlds together so you can\'t simply glance at them and walk away; they command the room. They are built for the collector who needs their home to feel as expansive and unbothered as the horizon.',
     cta: 'Expand your walls. Find your horizon.',
   },
   {
@@ -212,13 +212,13 @@ export const SUBJECTS_CONTENT_DATA: ContentEntry[] = [
   {
     slug: 'waterscapes',
     title: 'Waterscapes',
-    description: 'Water is the great equalizer\u2014it can carve through solid rock or hold a single, floating lotus in perfect, mirror-like stillness. I photograph water to capture that duality, freezing the exact tension between chaos and absolute calm. These pieces bring a fluid, meditative rhythm into environments that are otherwise rigid with corporate or daily stress.',
+    description: 'Water is the great equalizer: it can carve through solid rock or hold a single, floating lotus in perfect, mirror-like stillness. I photograph water to capture that duality, freezing the exact tension between chaos and absolute calm. These pieces bring a fluid, meditative rhythm into environments that are otherwise rigid with corporate or daily stress.',
     cta: 'Let the current wash the noise away. Dive in.',
   },
   {
     slug: 'nightscapes',
     title: 'Nightscapes',
-    description: 'When the sun drops, the frantic pace of human expectation completely evaporates. Standing alone in the pitch black, waiting for the starlight to paint the landscape, is my ultimate version of touching grass. Bringing these deep, indigo voids into your space provides an immediate, physiological exhale\u2014a reminder that the universe is vast, and our daily emergencies are actually quite small.',
+    description: 'When the sun drops, the frantic pace of human expectation completely evaporates. Standing alone in the pitch black, waiting for the starlight to paint the landscape, is my ultimate version of touching grass. Bringing these deep, indigo voids into your space provides an immediate, physiological exhale, a reminder that the universe is vast, and our daily emergencies are actually quite small.',
     cta: 'Turn off the lights. Look up at the dark.',
   },
   {

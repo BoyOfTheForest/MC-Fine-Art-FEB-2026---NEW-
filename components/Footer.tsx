@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
               Matthew Cicanese <span className="font-light text-gray-500">Fine Art</span>
             </Link>
             <p className="text-gray-500 leading-relaxed max-w-xs">
-              Sanctuary-grade fine art for high-throttle brains. Macro and wildlife photography that serves as a physiological exhale&mdash;a reminder to slow down and find stillness in a world of noise.
+              Sanctuary-grade fine art for high-throttle brains. Macro and wildlife photography that serves as a physiological exhale, a reminder to slow down and find stillness in a world of noise.
             </p>
 
             <div className="pt-4 max-w-xs">

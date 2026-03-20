@@ -93,7 +93,7 @@ export const SeriesDetailPage: React.FC = () => {
       {/* 2. Story Block */}
       <div className="max-w-3xl mx-auto px-6 mb-24">
         <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-800 border-l-2 border-gray-900 pl-6 font-serif">
-          "I didn't come to {currentSeries.label} looking for postcards. I came looking for the quiet&mdash;the kind
+          "I didn't come to {currentSeries.label} looking for postcards. I came looking for the quiet: the kind
           that forces a restless mind to stop scrolling and start breathing. These pieces bring that raw, unfiltered
           stillness directly into your daily orbit."
         </p>

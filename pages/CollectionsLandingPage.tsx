@@ -19,7 +19,7 @@ export const CollectionsLandingPage: React.FC = () => {
               Collections
             </h1>
             <p className="text-xl text-gray-200 font-light max-w-2xl mt-4">
-              Six bodies of work. Each one built as a different kind of sanctuary&mdash;a way to bring the quiet logic of the natural world into the spaces where your brain needs it most.
+              Six bodies of work. Each one built as a different kind of sanctuary, a way to bring the quiet logic of the natural world into the spaces where your brain needs it most.
             </p>
           </div>
         </div>
@@ -63,7 +63,7 @@ export const CollectionsLandingPage: React.FC = () => {
             <span className="text-xs font-bold tracking-widest uppercase text-gray-400">Limited Edition Release</span>
             <h2 className="text-4xl font-light">The Monochrome Edit</h2>
             <p className="text-gray-400 font-light text-lg">
-              Sometimes the world is too loud for color. This special selection strips the Ghosts series down to its bones&mdash;large-format metal prints in black and white, built for the space that needs absolute stillness.
+              Sometimes the world is too loud for color. This special selection strips the Ghosts series down to its bones: large-format metal prints in black and white, built for the space that needs absolute stillness.
             </p>
             <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black">
               Explore Monochrome
