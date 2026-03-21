@@ -8,31 +8,33 @@ export const ArtworkDetailPage: React.FC = () => {
   const { id } = useParams();
   const [showStickyButton, setShowStickyButton] = useState(false);
 
+  const artwork = id ? getArtworkBySlug(id) : undefined;
+
+  const currentIndex = ALL_ARTWORKS.findIndex(a => a.slug === id);
+  const prevArtwork = currentIndex > 0 ? ALL_ARTWORKS[currentIndex - 1] : ALL_ARTWORKS[ALL_ARTWORKS.length - 1];
+  const nextArtwork = currentIndex < ALL_ARTWORKS.length - 1 ? ALL_ARTWORKS[currentIndex + 1] : ALL_ARTWORKS[0];
+
   // Lightbox State
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   // Details Grid Images (crops)
-  const detailImages = [
-    "/Images/Artwork/Skyward/Skyward-Sentinel-Detail-Crop.jpg",
-    "/Images/Artwork/Skyward/Skyward-Sentinel-Detail-Crop.jpg",
-    "/Images/Artwork/Skyward/Skyward-Sentinel-Detail-Crop.jpg",
-    "/Images/Artwork/Skyward/Skyward-Sentinel-Detail-Crop.jpg"
-  ];
+  const detailImages = artwork?.detailGridImages || (artwork ? [
+    artwork.detailCropImage,
+    artwork.detailCropImage,
+    artwork.detailCropImage,
+    artwork.detailCropImage
+  ] : []);
 
   // Mockups Carousel State
-  const mockups = [
-    "/Images/Artwork/Skyward/Skyward-Sentinel-couch.jpg",
-    "/Images/Artwork/Skyward/Skyward-Sentinel- Bench.jpg",
-    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop"
-  ];
+  const mockups = artwork?.interiorImages.map(img => img.src) || [];
   const [activeMockupIndex, setActiveMockupIndex] = useState(0);
 
   const nextMockup = () => {
-    setActiveMockupIndex((prev) => (prev + 1) % mockups.length);
+    if (mockups.length) setActiveMockupIndex((prev) => (prev + 1) % mockups.length);
   };
   const prevMockup = () => {
-    setActiveMockupIndex((prev) => (prev - 1 + mockups.length) % mockups.length);
+    if (mockups.length) setActiveMockupIndex((prev) => (prev - 1 + mockups.length) % mockups.length);
   };
 
   const openLightbox = (imgSrc: string) => {
@@ -44,12 +46,6 @@ export const ArtworkDetailPage: React.FC = () => {
     setLightboxOpen(false);
     setLightboxImage(null);
   };
-
-  const artwork = id ? getArtworkBySlug(id) : undefined;
-
-  const currentIndex = ALL_ARTWORKS.findIndex(a => a.slug === id);
-  const prevArtwork = currentIndex > 0 ? ALL_ARTWORKS[currentIndex - 1] : ALL_ARTWORKS[ALL_ARTWORKS.length - 1];
-  const nextArtwork = currentIndex < ALL_ARTWORKS.length - 1 ? ALL_ARTWORKS[currentIndex + 1] : ALL_ARTWORKS[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -250,25 +246,48 @@ export const ArtworkDetailPage: React.FC = () => {
               </Button>
             </div>
 
-            <div className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {artwork.interiorImages[0] && (
-                <div className="md:col-span-2 relative h-[450px] rounded-3xl overflow-hidden shadow-lg group">
+            <div className="w-full lg:w-2/3 grid grid-cols-1 gap-6">
+              {mockups.length > 0 && (
+                <div className="relative h-[450px] rounded-3xl overflow-hidden shadow-lg group">
                   <img
-                    src={artwork.interiorImages[0].src}
-                    alt={artwork.interiorImages[0].alt}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src={mockups[activeMockupIndex]}
+                    alt={`Interior Mockup ${activeMockupIndex + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-700"
                   />
+                  {/* Carousel Overlay Nav */}
+                  {mockups.length > 1 && (
+                    <div className="absolute inset-0 flex items-center justify-between px-4">
+                      <button
+                        onClick={prevMockup}
+                        className="bg-white/70 hover:bg-white text-black p-2 rounded-full shadow-md backdrop-blur-sm transition-all"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button
+                        onClick={nextMockup}
+                        className="bg-white/70 hover:bg-white text-black p-2 rounded-full shadow-md backdrop-blur-sm transition-all"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
-              {artwork.interiorImages.slice(1).map((img, idx) => (
-                <div key={idx} className="relative h-[300px] rounded-3xl overflow-hidden shadow-lg group">
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+
+              {/* Thumbnail Strip */}
+              {mockups.length > 1 && (
+                <div className="flex gap-4 overflow-x-auto pb-2 custom-scrollbar">
+                  {mockups.map((mockupSrc, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveMockupIndex(idx)}
+                      className={`relative flex-shrink-0 h-24 w-32 rounded-xl overflow-hidden shadow-sm transition-all ${activeMockupIndex === idx ? 'ring-2 ring-black scale-95' : 'opacity-70 hover:opacity-100'}`}
+                    >
+                      <img src={mockupSrc} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -352,6 +371,32 @@ export const ArtworkDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* DETAILS CROP GRID */}
+      <section className="bg-gray-50 py-24 mx-2 md:mx-6 rounded-3xl mb-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {detailImages.map((imgSrc, idx) => (
+              <div 
+                key={idx} 
+                className="aspect-square cursor-pointer overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all group"
+                onClick={() => openLightbox(imgSrc)}
+              >
+                <img 
+                  src={imgSrc} 
+                  alt={`Detail ${idx + 1}`} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-6">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">
+              &lt; tap to expand the details &gt;
+            </span>
+          </div>
+        </div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-6 pb-12">
         <div className="flex justify-between items-center border-t border-gray-100 pt-8">
@@ -445,6 +490,26 @@ export const ArtworkDetailPage: React.FC = () => {
           </form>
         </div>
       </div>
+
+      {/* LIGHTBOX MODAL */}
+      {lightboxOpen && lightboxImage && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md transition-opacity">
+          <button 
+            onClick={closeLightbox}
+            className="absolute top-8 right-8 text-white/70 hover:text-white p-2 transition-colors z-50"
+          >
+            <X size={32} />
+          </button>
+          
+          <div className="relative w-full max-w-7xl max-h-[90vh] p-4 flex items-center justify-center">
+            <img 
+              src={lightboxImage} 
+              alt="Expanded Detail" 
+              className="max-w-full max-h-[85vh] object-contain shadow-2xl rounded-sm"
+            />
+          </div>
+        </div>
+      )}
 
     </div>
   );

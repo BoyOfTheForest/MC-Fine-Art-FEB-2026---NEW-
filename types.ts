@@ -44,6 +44,7 @@ export interface Artwork {
   placeImage: string;
   placeImageAlt: string;
   interiorImages: { src: string; alt: string }[];
+  detailGridImages?: string[];
   narrativeMoment: string;
   narrativePlace: string;
   narrativeSubject: string;
