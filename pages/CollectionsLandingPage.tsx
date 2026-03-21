@@ -54,23 +54,6 @@ export const CollectionsLandingPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-          <div className="w-full md:w-1/2 rounded-3xl overflow-hidden">
-            <img src="https://picsum.photos/id/104/1600/900" alt="Featured Work" className="w-full opacity-90" />
-          </div>
-          <div className="w-full md:w-1/2 space-y-6">
-            <span className="text-xs font-bold tracking-widest uppercase text-gray-400">Limited Edition Release</span>
-            <h2 className="text-4xl font-light">The Monochrome Edit</h2>
-            <p className="text-gray-400 font-light text-lg">
-              Sometimes the world is too loud for color. This special selection strips the Ghosts series down to its bones: large-format metal prints in black and white, built for the space that needs absolute stillness.
-            </p>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black">
-              Explore Monochrome
-            </Button>
-          </div>
-        </div>
-      </section>
 
       <section className="py-32 text-center bg-gray-50">
         <div className="max-w-2xl mx-auto px-6">

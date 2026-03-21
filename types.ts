@@ -202,7 +202,7 @@ export const COLLECTIONS_CONTENT_DATA: ContentEntry[] = [
     title: 'Symphonies in Scale',
     description: 'The modern world is full of chaotic noise, but if you look closely enough, nature is playing a perfectly composed rhythm. By blowing up the microscopic architecture of lichens to the size of a living room wall, this collection reveals the deep, vibrating geometry of survival. It is for the fellow rock flipper who needs their environment to feel incredibly grounded, ancient, and deliberate.',
     cta: 'Silence the room. Discover the architecture of the overlooked.',
-    imageUrl: 'https://picsum.photos/id/250/1600/1200',
+    imageUrl: '/Images/Artwork/SymphoniesInScale/Symphonies-in-scale_Sinharaja-Leaf.jpg',
   },
   {
     slug: 'ghosts',
