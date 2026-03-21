@@ -8,7 +8,7 @@ const COLLECTION_HERO_IMAGES: Record<string, string> = {
   'earth-up-close': 'https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?auto=compress&cs=tinysrgb&w=2000',
   'symphonies-in-scale': 'https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=2000',
   'ghosts': 'https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=2000',
-  'memento-mori': 'https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&w=2000',
+  'memento-mori': 'https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&w=2000',
   'the-digital-dialogues': 'https://images.pexels.com/photos/3075993/pexels-photo-3075993.jpeg?auto=compress&cs=tinysrgb&w=2000',
   'dilmah-conservation': 'https://images.pexels.com/photos/3608263/pexels-photo-3608263.jpeg?auto=compress&cs=tinysrgb&w=2000',
 };
@@ -23,14 +23,6 @@ const CollectionCard: React.FC<{ collection: ContentEntry }> = ({ collection }) 
           className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700" />
-      </div>
-      <div className="space-y-2">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-[#C4A484] block">
-          Collection
-        </span>
-        <h3 className="text-2xl font-serif text-black group-hover:text-gray-600 transition-colors">
-          {collection.title}
-        </h3>
       </div>
     </Link>
   );
@@ -56,7 +48,7 @@ export const CollectionsLandingPage: React.FC = () => {
       <section className="w-full h-[60vh] md:h-[80vh] relative overflow-hidden group">
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transition-transform duration-[2000ms] group-hover:scale-105"
-          style={{ backgroundImage: 'url("https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?auto=compress&cs=tinysrgb&w=2000")' }}
+          style={{ backgroundImage: 'url("https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=2000")' }}
         />
         <div className="absolute inset-0 bg-black/40 transition-opacity duration-1000 group-hover:bg-black/30" />
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 lg:p-24 bg-gradient-to-t from-black/80 to-transparent">
@@ -72,7 +64,7 @@ export const CollectionsLandingPage: React.FC = () => {
 
       <div className="relative z-10 bg-white">
         {COLLECTIONS_CONTENT_DATA.map((collection, idx) => {
-          const heroImageUrl = COLLECTION_HERO_IMAGES[collection.slug] || 'https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?auto=compress&cs=tinysrgb&w=2000';
+          const heroImageUrl = COLLECTION_HERO_IMAGES[collection.slug] || 'https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=2000';
           const isEven = idx % 2 === 0;
 
           return (
@@ -97,12 +89,16 @@ export const CollectionsLandingPage: React.FC = () => {
                 <div className={`flex flex-col lg:flex-row gap-16 lg:gap-24 items-start relative lg:min-h-[40vh] ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
                   <div className="w-full lg:w-5/12 lg:sticky lg:top-40 space-y-6 lg:pt-8 z-10">
                     <Reveal delay={100} className="space-y-6">
+                      <h3 className="text-4xl font-serif text-black">{collection.title}</h3>
                       <p className="text-gray-600 font-light text-xl leading-relaxed">
                         {collection.description}
                       </p>
                       <p className="text-sm font-medium text-black uppercase tracking-widest italic opacity-80">
                         {collection.cta}
                       </p>
+                      <div className="pt-2">
+                        <Button variant="outline" to={`/collections/${collection.slug}`}>Explore Collection</Button>
+                      </div>
                     </Reveal>
                   </div>
 

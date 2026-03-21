@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button } from '../components/Button';
-import { Mic2, Users, Tent, Sparkles, Building2 } from 'lucide-react';
+import { Reveal } from '../components/Reveal';
 
 export const ServicesPage: React.FC = () => {
   const location = useLocation();
@@ -28,7 +28,7 @@ export const ServicesPage: React.FC = () => {
           <span className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6 block">
             Artist Services
           </span>
-          <h1 className="text-5xl md:text-6xl font-light text-black mb-8 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-serif text-black mb-8 leading-tight">
             Education, Advocacy, <br/> and Connection.
           </h1>
           <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
@@ -48,9 +48,9 @@ export const ServicesPage: React.FC = () => {
              />
           </div>
           <div className="order-1 md:order-2 space-y-6">
-            <div className="flex items-center space-x-3 text-black">
-              <Mic2 size={28} strokeWidth={1.5} />
-              <h2 className="text-3xl font-light">Speaking</h2>
+            <div className="space-y-3 text-black">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484] block">Service</span>
+              <h2 className="text-4xl font-serif">Speaking</h2>
             </div>
             <p className="text-gray-600 leading-relaxed font-light text-lg">
               As a National Geographic Explorer and compelling storyteller, I weave together adventures from the field with profound insights on overcoming adversity to inspire audiences.
@@ -80,9 +80,9 @@ export const ServicesPage: React.FC = () => {
       <section id="consulting" className="py-24 px-6 bg-gray-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
-            <div className="flex items-center space-x-3 text-black">
-              <Building2 size={28} strokeWidth={1.5} />
-              <h2 className="text-3xl font-light">Art Consulting</h2>
+            <div className="space-y-3 text-black">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484] block">Service</span>
+              <h2 className="text-4xl font-serif">Art Consulting</h2>
             </div>
             <p className="text-gray-600 leading-relaxed font-light text-lg">
               For corporate organizations, I offer my signature <strong>"Art in Action"</strong> program. Join the Pilot-to-Partner initiative to integrate fine art into your Corporate Social Responsibility (CSR) strategy.
@@ -128,9 +128,9 @@ export const ServicesPage: React.FC = () => {
              />
           </div>
           <div className="order-1 md:order-2 space-y-6">
-            <div className="flex items-center space-x-3 text-black">
-              <Users size={28} strokeWidth={1.5} />
-              <h2 className="text-3xl font-light">Workshops</h2>
+            <div className="space-y-3 text-black">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484] block">Service</span>
+              <h2 className="text-4xl font-serif">Workshops</h2>
             </div>
             <p className="text-gray-600 leading-relaxed font-light text-lg">
               Hands-on learning experiences designed to unlock creativity and foster a deeper connection with the visual world.
@@ -149,6 +149,9 @@ export const ServicesPage: React.FC = () => {
                 </p>
               </div>
             </div>
+            <div className="pt-4">
+              <Button variant="outline" to="/contact">Inquire About Workshops</Button>
+            </div>
           </div>
         </div>
       </section>
@@ -156,8 +159,8 @@ export const ServicesPage: React.FC = () => {
       {/* 5. WELLNESS RETREATS */}
       <section id="retreats" className="py-24 px-6 bg-[#1a1a1a] text-white rounded-3xl mx-4 md:mx-6 scroll-mt-24">
         <div className="max-w-5xl mx-auto text-center space-y-8">
-           <Sparkles size={40} className="mx-auto text-amber-400 opacity-80" />
-           <h2 className="text-4xl md:text-5xl font-light">Wellness Retreats</h2>
+           <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484] block">Service</span>
+           <h2 className="text-4xl md:text-5xl font-serif">Wellness Retreats</h2>
            <h3 className="text-xl md:text-2xl font-serif italic text-gray-400">
              "Less about the click, more about what clicks."
            </h3>
@@ -174,7 +177,7 @@ export const ServicesPage: React.FC = () => {
 
       {/* 6. CTA */}
       <section className="py-32 px-6 text-center">
-        <h2 className="text-3xl font-light mb-8">Ready to collaborate?</h2>
+        <h2 className="text-3xl font-serif mb-8">Ready to collaborate?</h2>
         <Button to="/contact">Get in Touch</Button>
       </section>
     </div>

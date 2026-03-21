@@ -35,14 +35,6 @@ const SubjectCard: React.FC<{ subject: ContentEntry }> = ({ subject }) => {
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700" />
       </div>
-      <div className="space-y-2">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-[#C4A484] block">
-          Subject
-        </span>
-        <h3 className="text-2xl font-serif text-black group-hover:text-gray-600 transition-colors">
-          {subject.title}
-        </h3>
-      </div>
     </Link>
   );
 };
@@ -108,12 +100,16 @@ export const SubjectsLandingPage: React.FC = () => {
                 <div className={`flex flex-col lg:flex-row gap-16 lg:gap-24 items-start relative lg:min-h-[40vh] ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
                   <div className="w-full lg:w-5/12 lg:sticky lg:top-40 space-y-6 lg:pt-8 z-10">
                     <Reveal delay={100} className="space-y-6">
+                      <h3 className="text-4xl font-serif text-black">{subject.title}</h3>
                       <p className="text-gray-600 font-light text-xl leading-relaxed">
                         {subject.description}
                       </p>
                       <p className="text-sm font-medium text-black uppercase tracking-widest italic opacity-80">
                         {subject.cta}
                       </p>
+                      <div className="pt-2">
+                        <Button variant="outline" to={`/subjects/${subject.slug}`}>Explore Subject</Button>
+                      </div>
                     </Reveal>
                   </div>
 

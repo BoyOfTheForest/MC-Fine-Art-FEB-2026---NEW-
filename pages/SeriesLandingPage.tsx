@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Button } from '../components/Button';
 import { SERIES_CONTENT_DATA, SERIES_DESCRIPTIONS, NavItem } from '../types';
 import { Reveal } from '../components/Reveal';
 
@@ -102,16 +103,19 @@ export const SeriesLandingPage: React.FC = () => {
               <section className="py-24 px-6 max-w-7xl mx-auto bg-white relative">
                 <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start relative lg:min-h-[40vh]">
                   
-                  {/* Sticky Left Content - Region Context */}
                   <div className="w-full lg:w-5/12 lg:sticky lg:top-40 space-y-6 lg:pt-8 z-10 block">
                     {regionDesc && (
                       <Reveal delay={100} className="space-y-6">
+                        <h3 className="text-4xl font-serif text-black">{region.label}</h3>
                         <p className="text-gray-600 font-light text-xl leading-relaxed">
                           {regionDesc.description}
                         </p>
                         <p className="text-sm font-medium text-black uppercase tracking-widest italic opacity-80">
                           {regionDesc.cta}
                         </p>
+                        <div className="pt-2">
+                          <Button variant="outline" to={`/series#${id}`}>Explore Region</Button>
+                        </div>
                       </Reveal>
                     )}
                   </div>

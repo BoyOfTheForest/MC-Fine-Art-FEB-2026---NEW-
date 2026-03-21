@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button } from '../components/Button';
-import { Download, FileText, Image, Award, ExternalLink } from 'lucide-react';
+import { Download, FileText, ExternalLink } from 'lucide-react';
 
 export const PressPage: React.FC = () => {
   useEffect(() => {
@@ -20,7 +20,7 @@ export const PressPage: React.FC = () => {
         </span>
         <div className="flex flex-col md:flex-row gap-12 items-start justify-between">
           <div className="max-w-2xl">
-             <h1 className="text-5xl font-light text-black mb-6">Matthew Cicanese</h1>
+             <h1 className="text-5xl font-serif text-black mb-6">Matthew Cicanese</h1>
              <p className="text-2xl text-gray-500 font-light italic mb-8 font-serif">
                Storyteller. Explorer. Artist.
              </p>
@@ -39,9 +39,9 @@ export const PressPage: React.FC = () => {
 
       {/* 2. Official Biographies */}
       <section className="py-24 px-6 max-w-7xl mx-auto">
-        <div className="flex items-center gap-3 mb-12">
-          <FileText size={24} className="text-black" strokeWidth={1.5} />
-          <h2 className="text-2xl font-light">Official Biographies</h2>
+        <div className="mb-12">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484] mb-3 block">Press Resources</span>
+          <h2 className="text-4xl font-serif text-black">Official Biographies</h2>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -93,9 +93,9 @@ export const PressPage: React.FC = () => {
       {/* 3. Approved Imagery */}
       <section className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-12">
-            <Image size={24} className="text-black" strokeWidth={1.5} />
-            <h2 className="text-2xl font-light">Approved Imagery</h2>
+          <div className="mb-12">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484] mb-3 block">Media Assets</span>
+            <h2 className="text-4xl font-serif text-black">Approved Imagery</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -145,9 +145,9 @@ export const PressPage: React.FC = () => {
 
       {/* 4. Select Press & Features */}
       <section className="py-24 px-6 max-w-7xl mx-auto">
-        <div className="flex items-center gap-3 mb-12">
-           <Award size={24} className="text-black" strokeWidth={1.5} />
-           <h2 className="text-2xl font-light">Select Features</h2>
+        <div className="mb-12">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484] mb-3 block">In the Press</span>
+          <h2 className="text-4xl font-serif text-black">Select Features</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

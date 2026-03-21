@@ -11,7 +11,9 @@ const FeaturedCollection: React.FC<{
   image: string;
   link: string;
   align?: 'left' | 'right';
-}> = ({ title, description, image, link, align = 'left' }) => (
+  label?: string;
+  ctaText?: string;
+}> = ({ title, description, image, link, align = 'left', label = 'Featured Collection', ctaText = 'View Collection' }) => (
   <div className={`flex flex-col md:flex-row gap-12 items-center mb-32 ${align === 'right' ? 'md:flex-row-reverse' : ''}`}>
     <Reveal delay={0} className="w-full md:w-3/5 aspect-[4/3] bg-gray-100 overflow-hidden group rounded-3xl">
       <Link to={link}>
@@ -23,12 +25,12 @@ const FeaturedCollection: React.FC<{
       </Link>
     </Reveal>
     <Reveal delay={200} className="w-full md:w-2/5 flex flex-col items-start space-y-6">
-      <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Featured Collection</span>
-      <h2 className="text-4xl font-light text-black">{title}</h2>
-      <p className="text-gray-600 leading-relaxed">
+      <span className="text-xs font-bold uppercase tracking-widest text-[#C4A484]">{label}</span>
+      <h2 className="text-4xl font-serif text-black">{title}</h2>
+      <p className="text-gray-600 leading-relaxed font-light text-lg">
         {description}
       </p>
-      <Button to={link} variant="outline">View Collection</Button>
+      <Button to={link} variant="outline">{ctaText}</Button>
     </Reveal>
   </div>
 );
@@ -74,7 +76,7 @@ export const Home: React.FC = () => {
 
       <section className="py-24 px-6 max-w-4xl mx-auto text-center">
         <Reveal delay={100}>
-          <h2 className="text-3xl font-light mb-8">A sanctuary for high-throttle brains.</h2>
+          <h2 className="text-3xl font-serif mb-8">A sanctuary for high-throttle brains.</h2>
           <p className="text-xl text-gray-500 font-light leading-relaxed">
             I build portals to stillness through macro photography. These aren't decorations. They're
             functional tools for mental restoration, designed for the fellow rock flipper who needs their
@@ -97,6 +99,8 @@ export const Home: React.FC = () => {
           image="/Images/Artwork/Skyward/Skyward-Sentinel-Original.jpg"
           link="/artwork/skyward-sentinel"
           align="right"
+          label="New Release"
+          ctaText="View Artwork"
         />
         <FeaturedCollection
           title={symphonies.title}
@@ -108,7 +112,7 @@ export const Home: React.FC = () => {
 
       <section className="bg-gray-50 py-32 px-6 text-center">
         <Reveal delay={100} className="max-w-2xl mx-auto">
-          <h2 className="text-4xl font-light mb-6">Not sure where to start?</h2>
+          <h2 className="text-4xl font-serif mb-6">Not sure where to start?</h2>
           <p className="text-gray-600 mb-10 text-lg">
             If your brain is spinning and you need your space to do the heavy lifting,
             take the quiz. It's built for the overwhelmed collector who knows they need

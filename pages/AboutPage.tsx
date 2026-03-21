@@ -301,7 +301,7 @@ export const AboutPage: React.FC = () => {
         </div>
 
         <Reveal delay={400} className="mt-20 text-center">
-          <Button variant="outline" to="/about/press-kit">View Full CV</Button>
+          <Button variant="outline" to="/about/press-kit">View Full CV & Press Kit</Button>
         </Reveal>
       </section>
 
