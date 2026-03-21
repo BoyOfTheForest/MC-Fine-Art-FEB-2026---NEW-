@@ -1,8 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Sun, MapPin, Eye, Shield, Truck, Stamp, Layers, PenTool, Ruler, CreditCard, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { getArtworkBySlug, ALL_ARTWORKS } from '../data';
+
+function Reveal({ children, delay = 0, className = '' }: { children: React.ReactNode, delay?: number, className?: string }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-1000 ease-out ${className} ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export const ArtworkDetailPage: React.FC = () => {
   const { id } = useParams();
@@ -163,45 +197,51 @@ export const ArtworkDetailPage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 py-24 border-b border-gray-50">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
-          <div className="flex flex-col items-start">
-            {artwork.momentImage ? (
-              <img src={artwork.momentImage} alt="The Moment" className="w-full aspect-[4/3] object-cover rounded-2xl mb-8 shadow-sm" />
-            ) : (
-              <Sun size={24} className="text-gray-400 mb-4" strokeWidth={1} />
-            )}
+          <Reveal delay={0} className="flex flex-col items-start group">
+            <div className="overflow-hidden rounded-2xl mb-8 shadow-sm w-full aspect-[4/3]">
+              {artwork.momentImage ? (
+                <img src={artwork.momentImage} alt="The Moment" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50"><Sun size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
+              )}
+            </div>
             <h3 className="text-lg font-medium text-black mb-3">The Moment</h3>
             <p className="text-sm text-gray-500 leading-7 font-light">
               {artwork.narrativeMoment}
             </p>
-          </div>
-          <div className="flex flex-col items-start">
-            {artwork.placeContextImage ? (
-              <img src={artwork.placeContextImage} alt="The Place" className="w-full aspect-[4/3] object-cover rounded-2xl mb-8 shadow-sm" />
-            ) : (
-              <MapPin size={24} className="text-gray-400 mb-4" strokeWidth={1} />
-            )}
+          </Reveal>
+          <Reveal delay={200} className="flex flex-col items-start group">
+            <div className="overflow-hidden rounded-2xl mb-8 shadow-sm w-full aspect-[4/3]">
+              {artwork.placeContextImage ? (
+                <img src={artwork.placeContextImage} alt="The Place" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50"><MapPin size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
+              )}
+            </div>
             <h3 className="text-lg font-medium text-black mb-3">The Place</h3>
             <p className="text-sm text-gray-500 leading-7 font-light">
               {artwork.narrativePlace}
             </p>
-          </div>
-          <div className="flex flex-col items-start">
-            {artwork.subjectContextImage ? (
-              <img src={artwork.subjectContextImage} alt="The Subject" className="w-full aspect-[4/3] object-cover rounded-2xl mb-8 shadow-sm" />
-            ) : (
-              <Eye size={24} className="text-gray-400 mb-4" strokeWidth={1} />
-            )}
+          </Reveal>
+          <Reveal delay={400} className="flex flex-col items-start group">
+            <div className="overflow-hidden rounded-2xl mb-8 shadow-sm w-full aspect-[4/3]">
+              {artwork.subjectContextImage ? (
+                <img src={artwork.subjectContextImage} alt="The Subject" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50"><Eye size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
+              )}
+            </div>
             <h3 className="text-lg font-medium text-black mb-3">The Subject</h3>
             <p className="text-sm text-gray-500 leading-7 font-light">
               {artwork.narrativeSubject}
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
 
-      <section className="py-32 px-6 max-w-7xl mx-auto">
+      <section className="py-32 px-6 max-w-7xl mx-auto overflow-hidden">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
-          <div className="w-full lg:w-1/2 order-2 lg:order-1">
+          <Reveal delay={0} className="w-full lg:w-1/2 order-2 lg:order-1">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
               <img
                 src={artwork.detailCropImage}
@@ -209,8 +249,8 @@ export const ArtworkDetailPage: React.FC = () => {
                 className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-1000"
               />
             </div>
-          </div>
-          <div className="w-full lg:w-1/2 order-1 lg:order-2 space-y-8">
+          </Reveal>
+          <Reveal delay={200} className="w-full lg:w-1/2 order-1 lg:order-2 space-y-8">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484]">
               {artwork.storyOfSubjectLabel}
             </span>
@@ -223,19 +263,23 @@ export const ArtworkDetailPage: React.FC = () => {
             <p className="text-gray-600 font-light text-lg leading-relaxed">
               {artwork.storyOfSubjectP2}
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {artwork.fullBleedImage && (
-        <section className="w-full h-[60vh] md:h-[80vh] relative">
-          <img src={artwork.fullBleedImage} alt="Immersive Context" className="w-full h-full object-cover" />
+        <section className="w-full h-[60vh] md:h-[80vh] relative overflow-hidden group">
+          <div 
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transition-transform duration-[2000ms] group-hover:scale-105"
+            style={{ backgroundImage: `url('${artwork.fullBleedImage}')` }}
+          />
+          <div className="absolute inset-0 bg-black/10 transition-opacity duration-1000 group-hover:bg-black/0" />
         </section>
       )}
 
-      <section className="py-32 px-6 max-w-7xl mx-auto bg-gray-50 rounded-3xl my-12">
+      <section className="py-32 px-6 max-w-7xl mx-auto bg-gray-50 rounded-3xl my-12 overflow-hidden">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
-          <div className="w-full lg:w-1/2 space-y-8">
+          <Reveal delay={200} className="w-full lg:w-1/2 space-y-8">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484]">
               {artwork.storyOfPlaceLabel}
             </span>
@@ -248,8 +292,8 @@ export const ArtworkDetailPage: React.FC = () => {
             <p className="text-gray-600 font-light text-lg leading-relaxed">
               {artwork.storyOfPlaceP2}
             </p>
-          </div>
-          <div className="w-full lg:w-1/2">
+          </Reveal>
+          <Reveal delay={0} className="w-full lg:w-1/2">
             <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
               <img
                 src={artwork.placeImage}
@@ -257,14 +301,14 @@ export const ArtworkDetailPage: React.FC = () => {
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <div className="w-full lg:w-1/3 space-y-8">
+            <Reveal delay={0} className="w-full lg:w-1/3 space-y-8">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484]">
                 Interior Visualization
               </span>
@@ -277,9 +321,9 @@ export const ArtworkDetailPage: React.FC = () => {
               <Button onClick={scrollToForm} className="bg-white text-black border border-gray-200 shadow-xl hover:shadow-2xl hover:bg-gray-50 hover:scale-[1.02] transition-all px-8 py-4">
                 Visualize In Your Room
               </Button>
-            </div>
+            </Reveal>
 
-            <div className="w-full lg:w-2/3 grid grid-cols-1 gap-6">
+            <Reveal delay={200} className="w-full lg:w-2/3 grid grid-cols-1 gap-6">
               {mockups.length > 0 && (
                 <div className="relative h-[450px] rounded-3xl overflow-hidden shadow-lg group">
                   {mockups.map((src, idx) => (
@@ -309,7 +353,7 @@ export const ArtworkDetailPage: React.FC = () => {
                   ))}
                 </div>
               )}
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
