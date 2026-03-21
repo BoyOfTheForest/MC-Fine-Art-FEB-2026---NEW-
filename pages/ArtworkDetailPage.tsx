@@ -195,49 +195,77 @@ export const ArtworkDetailPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-24 border-b border-gray-50">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
-          <Reveal delay={0} className="flex flex-col items-start group">
-            <div className="overflow-hidden rounded-2xl mb-8 shadow-sm w-full aspect-[4/3]">
-              {artwork.momentImage ? (
-                <img src={artwork.momentImage} alt="The Moment" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50"><Sun size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
-              )}
-            </div>
-            <h3 className="text-lg font-medium text-black mb-3">The Moment</h3>
-            <p className="text-sm text-gray-500 leading-7 font-light">
+      {/* The Moment */}
+      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-gray-50">
+        <div className="flex flex-col lg:flex-row gap-16 items-start relative lg:min-h-[80vh]">
+          <div className="w-full lg:w-5/12 lg:sticky lg:top-1/3 space-y-6 pt-12 z-10 block">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484]">Context</span>
+            <h3 className="text-4xl md:text-5xl font-serif text-black leading-tight">The Moment</h3>
+            <p className="text-gray-600 font-light text-lg leading-relaxed">
               {artwork.narrativeMoment}
             </p>
-          </Reveal>
-          <Reveal delay={200} className="flex flex-col items-start group">
-            <div className="overflow-hidden rounded-2xl mb-8 shadow-sm w-full aspect-[4/3]">
-              {artwork.placeContextImage ? (
-                <img src={artwork.placeContextImage} alt="The Place" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50"><MapPin size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
-              )}
-            </div>
-            <h3 className="text-lg font-medium text-black mb-3">The Place</h3>
-            <p className="text-sm text-gray-500 leading-7 font-light">
+          </div>
+          <div className="w-full lg:w-7/12 mt-12 lg:mt-32 pb-32 ml-auto block">
+            <Reveal delay={0}>
+              <div className="rounded-3xl overflow-hidden shadow-2xl relative">
+                {artwork.momentImage ? (
+                  <img src={artwork.momentImage} alt="The Moment" className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-1000" />
+                ) : (
+                  <div className="w-full aspect-[4/3] flex flex-col items-center justify-center bg-gray-50"><Sun size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
+                )}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* The Place */}
+      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-gray-50">
+        <div className="flex flex-col lg:flex-row gap-16 items-start relative lg:min-h-[80vh]">
+          <div className="w-full lg:w-5/12 lg:sticky lg:top-1/3 space-y-6 pt-12 z-10 block">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484]">Context</span>
+            <h3 className="text-4xl md:text-5xl font-serif text-black leading-tight">The Place</h3>
+            <p className="text-gray-600 font-light text-lg leading-relaxed">
               {artwork.narrativePlace}
             </p>
-          </Reveal>
-          <Reveal delay={400} className="flex flex-col items-start group">
-            <div className="overflow-hidden rounded-2xl mb-8 shadow-sm w-full aspect-[4/3]">
-              {artwork.subjectContextImage ? (
-                <img src={artwork.subjectContextImage} alt="The Subject" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50"><Eye size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
-              )}
-            </div>
-            <h3 className="text-lg font-medium text-black mb-3">The Subject</h3>
-            <p className="text-sm text-gray-500 leading-7 font-light">
+          </div>
+          <div className="w-full lg:w-7/12 mt-12 lg:mt-32 pb-32 ml-auto block">
+            <Reveal delay={0}>
+              <div className="rounded-3xl overflow-hidden shadow-2xl relative">
+                {artwork.placeContextImage ? (
+                  <img src={artwork.placeContextImage} alt="The Place" className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-1000" />
+                ) : (
+                  <div className="w-full aspect-[4/3] flex flex-col items-center justify-center bg-gray-50"><MapPin size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
+                )}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* The Subject */}
+      <section className="py-24 px-6 max-w-7xl mx-auto border-b border-gray-50">
+        <div className="flex flex-col lg:flex-row gap-16 items-start relative lg:min-h-[80vh]">
+          <div className="w-full lg:w-5/12 lg:sticky lg:top-1/3 space-y-6 pt-12 z-10 block">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C4A484]">Context</span>
+            <h3 className="text-4xl md:text-5xl font-serif text-black leading-tight">The Subject</h3>
+            <p className="text-gray-600 font-light text-lg leading-relaxed">
               {artwork.narrativeSubject}
             </p>
-          </Reveal>
+          </div>
+          <div className="w-full lg:w-7/12 mt-12 lg:mt-32 pb-32 ml-auto block">
+            <Reveal delay={0}>
+              <div className="rounded-3xl overflow-hidden shadow-2xl relative">
+                {artwork.subjectContextImage ? (
+                  <img src={artwork.subjectContextImage} alt="The Subject" className="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-1000" />
+                ) : (
+                  <div className="w-full aspect-[4/3] flex flex-col items-center justify-center bg-gray-50"><Eye size={24} className="text-gray-400 mb-4" strokeWidth={1} /></div>
+                )}
+              </div>
+            </Reveal>
+          </div>
         </div>
-      </div>
+      </section>
 
       <section className="py-32 px-6 max-w-7xl mx-auto overflow-hidden">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
