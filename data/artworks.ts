@@ -89,21 +89,21 @@ export const ARTWORKS_DATA: Artwork[] = [
     collections: ['ghosts'],
     series: '/series/iceland',
     subjects: ['wildlife', 'nightscapes'],
-    heroImage: '/Images/Artwork/CottonCandyMidnight/Cotton Candy Midnight (Hero Image - EDIT) - Resized.JPG',
+    heroImage: '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Hero-Resized.JPG',
     heroAlt: 'Icelandic horses at midnight',
     detailCropImage: '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Story-Subject.jpg',
     detailCropAlt: 'Cotton Candy Midnight Story Subject',
-    placeImage: '/Images/Artwork/CottonCandyMidnight/Cotton Candy Midnight (Hero Image - EDIT) - Resized.JPG',
+    placeImage: '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Hero-Resized.JPG',
     placeImageAlt: 'Husavik Iceland twilight context',
     fullBleedImage: '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Full-Bleed.jpg',
     momentImage: '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Moment-New.jpg',
     placeContextImage: '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Moment.jpg',
     subjectContextImage: '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Place.jpg',
     detailGridImages: [
-      '/Images/Artwork/CottonCandyMidnight/Cotton Candy Midnight (CLOSEUP 01).JPG',
-      '/Images/Artwork/CottonCandyMidnight/Cotton Candy Midnight (CLOSEUP 02).JPG',
-      '/Images/Artwork/CottonCandyMidnight/Cotton Candy Midnight (CLOSEUP 03).JPG',
-      '/Images/Artwork/CottonCandyMidnight/Cotton Candy Midnight (CLOSEUP 04).JPG'
+      '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Closeup-01.JPG',
+      '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Closeup-02.JPG',
+      '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Closeup-03.JPG',
+      '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Closeup-04.JPG'
     ],
     interiorImages: [
       { src: '/Images/Artwork/CottonCandyMidnight/Cotton-Candy-Midnight-Mockup-01.png', alt: 'Living Room Context' },
