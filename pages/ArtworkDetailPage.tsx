@@ -16,7 +16,7 @@ export const ArtworkDetailPage: React.FC = () => {
 
   // Lightbox State
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // Details Grid Images (crops)
   const detailImages = artwork?.detailGridImages || (artwork ? [
@@ -30,21 +30,36 @@ export const ArtworkDetailPage: React.FC = () => {
   const mockups = artwork?.interiorImages.map(img => img.src) || [];
   const [activeMockupIndex, setActiveMockupIndex] = useState(0);
 
-  const nextMockup = () => {
-    if (mockups.length) setActiveMockupIndex((prev) => (prev + 1) % mockups.length);
-  };
-  const prevMockup = () => {
-    if (mockups.length) setActiveMockupIndex((prev) => (prev - 1 + mockups.length) % mockups.length);
-  };
+  useEffect(() => {
+    if (mockups.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveMockupIndex((prev) => (prev + 1) % mockups.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [mockups.length]);
 
-  const openLightbox = (imgSrc: string) => {
-    setLightboxImage(imgSrc);
+  const openLightbox = (idx: number) => {
+    setLightboxIndex(idx);
     setLightboxOpen(true);
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    setLightboxImage(null);
+    setLightboxIndex(null);
+  };
+
+  const nextLightboxImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (lightboxIndex !== null) {
+      setLightboxIndex((prev) => (prev! + 1) % detailImages.length);
+    }
+  };
+
+  const prevLightboxImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (lightboxIndex !== null) {
+      setLightboxIndex((prev) => (prev! - 1 + detailImages.length) % detailImages.length);
+    }
   };
 
   useEffect(() => {
@@ -149,21 +164,33 @@ export const ArtworkDetailPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 py-24 border-b border-gray-50">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
           <div className="flex flex-col items-start">
-            <Sun size={24} className="text-gray-400 mb-4" strokeWidth={1} />
+            {artwork.momentImage ? (
+              <img src={artwork.momentImage} alt="The Moment" className="w-full aspect-[4/3] object-cover rounded-2xl mb-8 shadow-sm" />
+            ) : (
+              <Sun size={24} className="text-gray-400 mb-4" strokeWidth={1} />
+            )}
             <h3 className="text-lg font-medium text-black mb-3">The Moment</h3>
             <p className="text-sm text-gray-500 leading-7 font-light">
               {artwork.narrativeMoment}
             </p>
           </div>
           <div className="flex flex-col items-start">
-            <MapPin size={24} className="text-gray-400 mb-4" strokeWidth={1} />
+            {artwork.placeContextImage ? (
+              <img src={artwork.placeContextImage} alt="The Place" className="w-full aspect-[4/3] object-cover rounded-2xl mb-8 shadow-sm" />
+            ) : (
+              <MapPin size={24} className="text-gray-400 mb-4" strokeWidth={1} />
+            )}
             <h3 className="text-lg font-medium text-black mb-3">The Place</h3>
             <p className="text-sm text-gray-500 leading-7 font-light">
               {artwork.narrativePlace}
             </p>
           </div>
           <div className="flex flex-col items-start">
-            <Eye size={24} className="text-gray-400 mb-4" strokeWidth={1} />
+            {artwork.subjectContextImage ? (
+              <img src={artwork.subjectContextImage} alt="The Subject" className="w-full aspect-[4/3] object-cover rounded-2xl mb-8 shadow-sm" />
+            ) : (
+              <Eye size={24} className="text-gray-400 mb-4" strokeWidth={1} />
+            )}
             <h3 className="text-lg font-medium text-black mb-3">The Subject</h3>
             <p className="text-sm text-gray-500 leading-7 font-light">
               {artwork.narrativeSubject}
@@ -199,6 +226,12 @@ export const ArtworkDetailPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {artwork.fullBleedImage && (
+        <section className="w-full h-[60vh] md:h-[80vh] relative">
+          <img src={artwork.fullBleedImage} alt="Immersive Context" className="w-full h-full object-cover" />
+        </section>
+      )}
 
       <section className="py-32 px-6 max-w-7xl mx-auto bg-gray-50 rounded-3xl my-12">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
@@ -249,28 +282,16 @@ export const ArtworkDetailPage: React.FC = () => {
             <div className="w-full lg:w-2/3 grid grid-cols-1 gap-6">
               {mockups.length > 0 && (
                 <div className="relative h-[450px] rounded-3xl overflow-hidden shadow-lg group">
-                  <img
-                    src={mockups[activeMockupIndex]}
-                    alt={`Interior Mockup ${activeMockupIndex + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-700"
-                  />
-                  {/* Carousel Overlay Nav */}
-                  {mockups.length > 1 && (
-                    <div className="absolute inset-0 flex items-center justify-between px-4">
-                      <button
-                        onClick={prevMockup}
-                        className="bg-white/70 hover:bg-white text-black p-2 rounded-full shadow-md backdrop-blur-sm transition-all"
-                      >
-                        <ChevronLeft size={24} />
-                      </button>
-                      <button
-                        onClick={nextMockup}
-                        className="bg-white/70 hover:bg-white text-black p-2 rounded-full shadow-md backdrop-blur-sm transition-all"
-                      >
-                        <ChevronRight size={24} />
-                      </button>
-                    </div>
-                  )}
+                  {mockups.map((src, idx) => (
+                    <img
+                      key={idx}
+                      src={src}
+                      alt={`Interior Mockup ${idx + 1}`}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                        activeMockupIndex === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                      }`}
+                    />
+                  ))}
                 </div>
               )}
 
@@ -380,7 +401,7 @@ export const ArtworkDetailPage: React.FC = () => {
               <div 
                 key={idx} 
                 className="aspect-square cursor-pointer overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all group"
-                onClick={() => openLightbox(imgSrc)}
+                onClick={() => openLightbox(idx)}
               >
                 <img 
                   src={imgSrc} 
@@ -492,18 +513,37 @@ export const ArtworkDetailPage: React.FC = () => {
       </div>
 
       {/* LIGHTBOX MODAL */}
-      {lightboxOpen && lightboxImage && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md transition-opacity">
+      {lightboxOpen && lightboxIndex !== null && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md transition-opacity" 
+          onClick={closeLightbox}
+        >
           <button 
             onClick={closeLightbox}
-            className="absolute top-8 right-8 text-white/70 hover:text-white p-2 transition-colors z-50"
+            className="absolute top-8 right-8 text-white/70 hover:text-white p-2 transition-colors z-[110]"
           >
             <X size={32} />
           </button>
           
-          <div className="relative w-full max-w-7xl max-h-[90vh] p-4 flex items-center justify-center">
+          <button 
+            onClick={prevLightboxImage} 
+            className="absolute left-4 md:left-8 text-white/50 hover:text-white p-4 z-[110] transition-transform hover:scale-110"
+          >
+            <ChevronLeft size={48} strokeWidth={1} />
+          </button>
+          <button 
+            onClick={nextLightboxImage} 
+            className="absolute right-4 md:right-8 text-white/50 hover:text-white p-4 z-[110] transition-transform hover:scale-110"
+          >
+            <ChevronRight size={48} strokeWidth={1} />
+          </button>
+
+          <div 
+            className="relative w-full max-w-7xl max-h-[90vh] p-4 flex items-center justify-center" 
+            onClick={(e) => e.stopPropagation()}
+          >
             <img 
-              src={lightboxImage} 
+              src={detailImages[lightboxIndex]} 
               alt="Expanded Detail" 
               className="max-w-full max-h-[85vh] object-contain shadow-2xl rounded-sm"
             />

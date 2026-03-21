@@ -45,6 +45,10 @@ export interface Artwork {
   placeImageAlt: string;
   interiorImages: { src: string; alt: string }[];
   detailGridImages?: string[];
+  momentImage?: string;
+  placeContextImage?: string;
+  subjectContextImage?: string;
+  fullBleedImage?: string;
   narrativeMoment: string;
   narrativePlace: string;
   narrativeSubject: string;
